@@ -1,0 +1,48 @@
+.wrapper {
+  margin-bottom: 1.25rem;
+}
+
+.bar {
+  display: flex;
+  gap: 2px;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--surface-soft);
+}
+
+.segment {
+  flex-basis: 0;
+  min-width: 6px;
+}
+
+.legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.legend strong {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.pendiente { background: #e0a63a; }
+.enProgreso { background: var(--secondary); }
+.completo { background: var(--primary); }

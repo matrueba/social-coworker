@@ -1,41 +1,48 @@
-import styles from './ReportList.module.css';
-import { Report } from '../data/mocks';
+import Link from 'next/link'
+import styles from './ReportList.module.css'
+import Icon from './Icon'
+import StatusBadge, { DraftBadge } from './StatusBadge'
+import { formatDate } from '@/lib/format'
+import { isDraft, type Report } from '@/lib/reportSchema'
 
 interface ReportListProps {
-    reports: Report[];
+    reports: Report[]
+    emptyMessage?: string
+    showCreateAction?: boolean
+    compact?: boolean
 }
 
-const ReportList = ({ reports }: ReportListProps) => {
-    const getStatusClass = (status: string) => {
-        switch (status) {
-            case 'Completo': return styles.statusCompleto;
-            case 'En Progreso': return styles.statusEnProgreso;
-            case 'Pendiente': return styles.statusPendiente;
-            default: return '';
-        }
-    };
+const ReportList = ({ reports, emptyMessage = 'Todavía no hay casos.', showCreateAction = true, compact = false }: ReportListProps) => {
+    if (reports.length === 0) {
+        return (
+            <div className={styles.empty}>
+                <span className={styles.emptyIcon}><Icon name="report" size={24} /></span>
+                <p>{emptyMessage}</p>
+            </div>
+        )
+    }
 
     return (
-        <section className={styles.container}>
-            <h2 className={styles.title}>Últimos Informes Generados</h2>
-            <div className={styles.list}>
-                {reports.map((report) => (
-                    <div key={report.id} className={styles.card}>
-                        <div className={styles.cardHeader}>
-                            <h3 className={styles.reportTitle}>{report.title}</h3>
-                            <span className={`${styles.status} ${getStatusClass(report.status)}`}>
-                                {report.status}
-                            </span>
+        <ul className={`${styles.list} ${compact ? styles.compact : ''}`}>
+            {reports.map((report) => (
+                <li key={report.id}>
+                    <Link href={isDraft(report) ? `/reports/${report.id}/review` : `/reports/${report.id}`} className={styles.card}>
+                        <div className={`${styles.avatar} ${styles.avatarSecondary}`} aria-hidden>
+                            <Icon name="report" size={20} />
                         </div>
-                        <div className={styles.details}>
-                            <span>👤 {report.clientName}</span>
-                            <span>📅 {report.date}</span>
+                        <div className={styles.body}>
+                            <h3 className={styles.itemTitle}>{report.title}</h3>
+                            <div className={styles.details}>
+                                <span className={styles.meta}><Icon name="user" /> {report.clientName}</span>
+                                <span className={styles.meta}><Icon name="calendar" /> {formatDate(report.createdAt)}</span>
+                            </div>
                         </div>
-                    </div>
-                ))}
-            </div>
-        </section>
-    );
-};
+                        {isDraft(report) ? <DraftBadge /> : <StatusBadge status={report.status} />}
+                    </Link>
+                </li>
+            ))}
+        </ul>
+    )
+}
 
-export default ReportList;
+export default ReportList

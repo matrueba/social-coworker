@@ -1,18 +1,19 @@
-import ReportForm from '@/components/ReportForm';
+import PageHeader from '@/components/PageHeader'
+import ReportForm from '@/components/ReportForm'
+import { createReportAction } from '@/app/reports/actions'
+import { getVisitOptions } from '@/lib/visitOptions'
+
+export const dynamic = 'force-dynamic'
 
 export default function CreateReportPage() {
     return (
-        <div style={{ padding: '2rem' }}>
-            <header style={{ marginBottom: '2rem' }}>
-                <h1 style={{ fontSize: '2rem', color: '#1e293b', marginBottom: '0.5rem' }}>
-                    Crear Nuevo Informe
-                </h1>
-                <p style={{ color: '#64748b' }}>
-                    Registra los detalles y notas del caso.
-                </p>
-            </header>
-
-            <ReportForm />
+        <div className="page">
+            <PageHeader
+                eyebrow="Nuevo"
+                title="Crear nuevo informe"
+                description="Informe técnico estructurado en 7 secciones. Solo el resumen del caso y el motivo de consulta son obligatorios."
+            />
+            <ReportForm visits={getVisitOptions()} action={createReportAction} />
         </div>
-    );
+    )
 }

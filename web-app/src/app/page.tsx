@@ -1,36 +1,52 @@
-import Link from 'next/link';
-import ReportList from '../components/ReportList';
-import { recentReports } from '../data/mocks';
+import Panel from '@/components/Panel'
+import PageHeader from '@/components/PageHeader'
+import ReportList from '@/components/ReportList'
+import StatCards, { type StatItem } from '@/components/StatCards'
+import StatusBreakdown from '@/components/StatusBreakdown'
+import VisitList from '@/components/VisitList'
+import { getDashboardStats } from '@/lib/db/dashboard'
+import { getReportStats, listReports } from '@/lib/db/reports'
+import { listVisits } from '@/lib/db/visits'
+
+export const dynamic = 'force-dynamic'
+
+const RECENT_LIMIT = 4
+
+const todayLabel = () =>
+  new Intl.DateTimeFormat('es-ES', { weekday: 'long', day: 'numeric', month: 'long' }).format(new Date())
 
 export default function Home() {
+  const dashboard = getDashboardStats()
+  const reportStats = getReportStats()
+  const recentVisits = listVisits({ limit: RECENT_LIMIT })
+  const recentReports = listReports({ limit: RECENT_LIMIT })
+
+  const stats: StatItem[] = [
+    { label: 'Visitas registradas', value: dashboard.visitsTotal, icon: 'visit', tone: 'primary', hint: `${dashboard.visitsThisMonth} este mes` },
+    { label: 'Casos', value: reportStats.total, icon: 'report', tone: 'secondary', hint: `${reportStats.byStatus.Completo} completados` },
+    { label: 'Casos pendientes', value: reportStats.byStatus.Pendiente, icon: 'clock', tone: 'warning', hint: reportStats.drafts ? `${reportStats.drafts} borradores IA por revisar` : undefined },
+    { label: 'Clientes atendidos', value: dashboard.clientsTotal, icon: 'users', tone: 'primary' },
+  ]
+
   return (
-    <div style={{ padding: '2rem' }}>
-      <header style={{ marginBottom: '2rem' }}>
-        <h1 style={{ fontSize: '2rem', color: '#1e293b', marginBottom: '0.5rem' }}>
-          Hola, Trabajador Social 👋
-        </h1>
-        <p style={{ color: '#64748b' }}>
-          Aquí tienes un resumen de tu actividad reciente.
-        </p>
-      </header>
+    <div className="page">
+      <PageHeader
+        eyebrow={todayLabel()}
+        title="Hola, Trabajador Social"
+        description="Aquí tienes un resumen de tu actividad reciente."
+      />
 
-      <ReportList reports={recentReports} />
+      <StatCards items={stats} />
 
-      <div style={{ marginTop: '2rem' }}>
-        <Link
-          href="/create-report"
-          style={{
-            display: 'inline-block',
-            backgroundColor: 'var(--primary-color)',
-            color: 'white',
-            padding: '0.75rem 1.5rem',
-            borderRadius: '6px',
-            fontWeight: 500
-          }}
-        >
-          + Crear Nuevo Informe
-        </Link>
+      <div className="twoColumns">
+        <Panel title="Últimas visitas" icon="visit" href="/visits">
+          <VisitList visits={recentVisits} compact showCreateAction={false} />
+        </Panel>
+        <Panel title="Últimos casos" icon="report" href="/reports">
+          <StatusBreakdown stats={reportStats} />
+          <ReportList reports={recentReports} compact showCreateAction={false} />
+        </Panel>
       </div>
     </div>
-  );
+  )
 }
