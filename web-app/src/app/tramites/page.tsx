@@ -1,5 +1,5 @@
-import PageHeader from '@/components/PageHeader'
-import Tabs, { type TabItem } from '@/components/Tabs'
+import PageHeader from '@/components/ui/PageHeader'
+import Tabs, { type TabItem } from '@/components/ui/Tabs'
 import DependencyTab from '@/components/tramites/DependencyTab'
 
 export const dynamic = 'force-dynamic'

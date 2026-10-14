@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import Icon, { type IconName } from './Icon'
+import Icon, { type IconName } from '@/components/ui/Icon'
 import styles from './Sidebar.module.css'
 
 const NAV_ITEMS: { href: string; label: string; icon: IconName }[] = [
@@ -27,7 +27,7 @@ const Sidebar = () => {
         <aside className={styles.sidebar}>
             <div className={styles.logo}>
                 <span className={styles.logoMark}><Icon name="sparkles" size={20} /></span>
-                <span>Social Copilot</span>
+                <span>Social Coworker</span>
             </div>
             <nav className={styles.nav} aria-label="Navegación principal">
                 {NAV_ITEMS.map((item) => {

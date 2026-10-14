@@ -1,5 +1,5 @@
-import ChatWindow from '@/components/ChatWindow'
-import PageHeader from '@/components/PageHeader'
+import ChatWindow from '@/components/chat/ChatWindow'
+import PageHeader from '@/components/ui/PageHeader'
 
 export default function ChatPage() {
     return (

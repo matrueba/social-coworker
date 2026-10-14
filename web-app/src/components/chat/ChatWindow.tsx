@@ -2,8 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import styles from './ChatWindow.module.css';
-import Icon from './Icon';
-import { ChatMessage, sendChatMessage } from '../data/mocks';
+import Icon from '@/components/ui/Icon';
+import { ChatMessage, sendChatMessage } from '@/data/mocks';
 
 const suggestions = [
     '¿Qué ayudas sociales hay disponibles?',

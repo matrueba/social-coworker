@@ -1,4 +1,4 @@
-import Icon from '../Icon'
+import Icon from '@/components/ui/Icon'
 import MockActionButton from './MockActionButton'
 import DependencyStatusBadge from './DependencyStatusBadge'
 import type { DependencyCase } from '@/lib/tramites/dependencyApi'

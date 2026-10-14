@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import styles from './ReportList.module.css'
-import Icon from './Icon'
+import styles from '@/components/reports/ReportList.module.css'
+import Icon from '@/components/ui/Icon'
 import { formatLocalDateTime } from '@/lib/format'
 import type { Visit } from '@/lib/visitSchema'
 

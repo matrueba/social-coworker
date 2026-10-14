@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import styles from './ReportList.module.css'
-import Icon from './Icon'
-import StatusBadge, { DraftBadge } from './StatusBadge'
+import Icon from '@/components/ui/Icon'
+import StatusBadge, { DraftBadge } from '@/components/ui/StatusBadge'
 import { formatDate } from '@/lib/format'
 import { isDraft, type Report } from '@/lib/reportSchema'
 

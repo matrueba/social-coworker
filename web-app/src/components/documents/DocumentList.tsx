@@ -1,6 +1,6 @@
 import styles from './DocumentList.module.css';
-import { Document } from '../data/mocks';
-import Icon, { type IconName } from './Icon';
+import { Document } from '@/data/mocks';
+import Icon, { type IconName } from '@/components/ui/Icon';
 
 interface DocumentListProps {
     documents: Document[];

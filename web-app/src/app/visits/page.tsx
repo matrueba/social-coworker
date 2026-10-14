@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import Icon from '@/components/Icon'
-import PageHeader from '@/components/PageHeader'
-import VisitList from '@/components/VisitList'
+import Icon from '@/components/ui/Icon'
+import PageHeader from '@/components/ui/PageHeader'
+import VisitList from '@/components/visits/VisitList'
 import { listVisits } from '@/lib/db/visits'
 
 export const dynamic = 'force-dynamic'

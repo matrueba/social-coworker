@@ -2,7 +2,7 @@
 
 import { useActionState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import styles from './ReportForm.module.css'
+import styles from '@/components/reports/ReportForm.module.css'
 import { createVisitAction, type VisitFormState } from '@/app/visits/actions'
 
 const INITIAL_STATE: VisitFormState = {}

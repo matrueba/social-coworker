@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import PageHeader from '@/components/PageHeader';
-import DocumentUpload from '@/components/DocumentUpload';
-import DocumentList from '@/components/DocumentList';
+import PageHeader from '@/components/ui/PageHeader';
+import DocumentUpload from '@/components/documents/DocumentUpload';
+import DocumentList from '@/components/documents/DocumentList';
 import { getDocuments } from '@/data/mocks';
 
 export default function UploadDocumentsPage() {

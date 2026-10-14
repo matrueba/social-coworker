@@ -1,4 +1,4 @@
-import type { VisitOption } from '@/components/ReportForm'
+import type { VisitOption } from '@/components/reports/ReportForm'
 import { listVisits } from './db/visits'
 import { formatLocalDateTime } from './format'
 

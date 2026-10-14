@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import Icon from '../Icon'
-import StatCards from '../StatCards'
+import Icon from '@/components/ui/Icon'
+import StatCards from '@/components/ui/StatCards'
 import DependencyCaseDetail from './DependencyCaseDetail'
 import DependencyStatusBadge from './DependencyStatusBadge'
 import {

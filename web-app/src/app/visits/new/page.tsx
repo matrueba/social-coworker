@@ -1,5 +1,5 @@
-import PageHeader from '@/components/PageHeader'
-import VisitForm from '@/components/VisitForm'
+import PageHeader from '@/components/ui/PageHeader'
+import VisitForm from '@/components/visits/VisitForm'
 
 export default function NewVisitPage() {
     return (

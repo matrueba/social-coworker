@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Icon, { type IconName } from '../Icon'
+import Icon, { type IconName } from '@/components/ui/Icon'
 
 interface MockActionButtonProps {
     label: string

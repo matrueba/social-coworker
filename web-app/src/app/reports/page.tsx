@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import Icon from '@/components/Icon'
-import PageHeader from '@/components/PageHeader'
-import ReportList from '@/components/ReportList'
+import Icon from '@/components/ui/Icon'
+import PageHeader from '@/components/ui/PageHeader'
+import ReportList from '@/components/reports/ReportList'
 import { REPORT_STATUSES, listReports, type ReportStatus } from '@/lib/db/reports'
 import styles from './reports.module.css'
 

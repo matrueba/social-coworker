@@ -1,0 +1,56 @@
+{
+    // Depuración del agente IA y de la app (VS Code / extensión de Node.js integrada)
+    // Las claves se leen de web-app/.env.local (ver web-app/.env.example)
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Ejecuta solo el agente con el caso de ejemplo de scripts/debugAgent.ts.
+            // Pon puntos de ruptura en src/agents/agent.ts o en el script.
+            "name": "Depurar agente (caso de ejemplo)",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/web-app",
+            "runtimeExecutable": "node",
+            "runtimeArgs": ["--import", "tsx"],
+            "program": "${workspaceFolder}/web-app/scripts/debugAgent.ts",
+            "envFile": "${workspaceFolder}/web-app/.env.local",
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "skipFiles": ["<node_internals>/**"]
+        },
+        {
+            // Igual que la anterior, pero con una visita real de la base de datos SQLite.
+            "name": "Depurar agente (visita de la BD)",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/web-app",
+            "runtimeExecutable": "node",
+            "runtimeArgs": ["--import", "tsx"],
+            "program": "${workspaceFolder}/web-app/scripts/debugAgent.ts",
+            "envFile": "${workspaceFolder}/web-app/.env.local",
+            "env": { "VISIT_ID": "${input:visitId}" },
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "skipFiles": ["<node_internals>/**"]
+        },
+        {
+            // Arranca la app completa (next dev) con el depurador enganchado al servidor.
+            // Sirve para parar en el flujo real: botón "Generar con IA" → app/visits/actions.ts → agents/agent.ts.
+            // Detén antes cualquier otro "next dev" que esté corriendo en web-app.
+            "name": "Depurar app (Next.js servidor)",
+            "type": "node-terminal",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/web-app",
+            "command": "npm run dev",
+            "skipFiles": ["<node_internals>/**"]
+        }
+    ],
+    "inputs": [
+        {
+            "id": "visitId",
+            "type": "promptString",
+            "description": "ID de la visita a usar (ver la URL /visits/<id>)",
+            "default": "1"
+        }
+    ]
+}

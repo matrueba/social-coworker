@@ -1,7 +1,7 @@
 'use client'
 
 import { useActionState } from 'react'
-import Icon from './Icon'
+import Icon from '@/components/ui/Icon'
 import styles from './GenerateWithAiButton.module.css'
 import { generateReportAction, type GenerateReportState } from '@/app/visits/actions'
 

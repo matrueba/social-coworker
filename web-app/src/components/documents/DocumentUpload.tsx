@@ -2,8 +2,8 @@
 
 import { useState, useRef, DragEvent } from 'react';
 import styles from './DocumentUpload.module.css';
-import Icon from './Icon';
-import { addDocument, Document } from '../data/mocks';
+import Icon from '@/components/ui/Icon';
+import { addDocument, Document } from '@/data/mocks';
 
 interface DocumentUploadProps {
     onDocumentAdded: (doc: Document) => void;

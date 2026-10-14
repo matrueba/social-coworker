@@ -1,5 +1,5 @@
 import type { DependencyStatus } from '@/lib/tramites/dependencyApi'
-import styles from '../StatusBadge.module.css'
+import styles from '@/components/ui/StatusBadge.module.css'
 
 const TONE: Record<DependencyStatus, string> = {
     'Solicitud registrada': styles.enProgreso,

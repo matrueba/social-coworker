@@ -13,11 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Social Worker Copilot",
+  title: "Social Coworker",
   description: "Asistente para trabajadores sociales",
 };
 
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/layout/Sidebar";
 
 export default function RootLayout({
   children,

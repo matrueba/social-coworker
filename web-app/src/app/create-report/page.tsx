@@ -1,5 +1,5 @@
-import PageHeader from '@/components/PageHeader'
-import ReportForm from '@/components/ReportForm'
+import PageHeader from '@/components/ui/PageHeader'
+import ReportForm from '@/components/reports/ReportForm'
 import { createReportAction } from '@/app/reports/actions'
 import { getVisitOptions } from '@/lib/visitOptions'
 
