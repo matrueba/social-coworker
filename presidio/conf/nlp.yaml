@@ -1,0 +1,17 @@
+# Motor NLP: spaCy en español. Fase 2 (híbrido): añadir aquí el modelo spaCy local
+# entrenado con datos del dominio (ver ANONIMIZACION.md).
+nlp_engine_name: spacy
+models:
+  - lang_code: es
+    model_name: es_core_news_md
+
+ner_model_configuration:
+  model_to_presidio_entity_mapping:
+    PER: PERSON
+    LOC: LOCATION
+    ORG: ORGANIZATION
+  low_confidence_score_multiplier: 0.4
+  low_score_entity_names:
+    - ORG
+  labels_to_ignore:
+    - MISC

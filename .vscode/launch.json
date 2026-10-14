@@ -1,6 +1,6 @@
 {
     // Depuración del agente IA y de la app (VS Code / extensión de Node.js integrada)
-    // Las claves se leen de web-app/.env.local (ver web-app/.env.example)
+    // Las claves se leen de app/.env.local (ver app/.env.example)
     "version": "0.2.0",
     "configurations": [
         {
@@ -9,11 +9,11 @@
             "name": "Depurar agente (caso de ejemplo)",
             "type": "node",
             "request": "launch",
-            "cwd": "${workspaceFolder}/web-app",
+            "cwd": "${workspaceFolder}/app",
             "runtimeExecutable": "node",
             "runtimeArgs": ["--import", "tsx"],
-            "program": "${workspaceFolder}/web-app/scripts/debugAgent.ts",
-            "envFile": "${workspaceFolder}/web-app/.env.local",
+            "program": "${workspaceFolder}/app/scripts/debugAgent.ts",
+            "envFile": "${workspaceFolder}/app/.env.local",
             "console": "integratedTerminal",
             "sourceMaps": true,
             "skipFiles": ["<node_internals>/**"]
@@ -23,12 +23,27 @@
             "name": "Depurar agente (visita de la BD)",
             "type": "node",
             "request": "launch",
-            "cwd": "${workspaceFolder}/web-app",
+            "cwd": "${workspaceFolder}/app",
             "runtimeExecutable": "node",
             "runtimeArgs": ["--import", "tsx"],
-            "program": "${workspaceFolder}/web-app/scripts/debugAgent.ts",
-            "envFile": "${workspaceFolder}/web-app/.env.local",
+            "program": "${workspaceFolder}/app/scripts/debugAgent.ts",
+            "envFile": "${workspaceFolder}/app/.env.local",
             "env": { "VISIT_ID": "${input:visitId}" },
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "skipFiles": ["<node_internals>/**"]
+        },
+        {
+            // Seudonimiza un caso de ejemplo contra el contenedor de Presidio, sin llamar al LLM.
+            // Requiere: docker compose up -d presidio-analyzer (ver ANONIMIZACION.md).
+            "name": "Depurar anonimización (Presidio)",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/app",
+            "runtimeExecutable": "node",
+            "runtimeArgs": ["--import", "tsx"],
+            "program": "${workspaceFolder}/app/scripts/debugAnonymizer.ts",
+            "envFile": "${workspaceFolder}/app/.env.local",
             "console": "integratedTerminal",
             "sourceMaps": true,
             "skipFiles": ["<node_internals>/**"]
@@ -36,11 +51,11 @@
         {
             // Arranca la app completa (next dev) con el depurador enganchado al servidor.
             // Sirve para parar en el flujo real: botón "Generar con IA" → app/visits/actions.ts → agents/agent.ts.
-            // Detén antes cualquier otro "next dev" que esté corriendo en web-app.
+            // Detén antes cualquier otro "next dev" que esté corriendo en app.
             "name": "Depurar app (Next.js servidor)",
             "type": "node-terminal",
             "request": "launch",
-            "cwd": "${workspaceFolder}/web-app",
+            "cwd": "${workspaceFolder}/app",
             "command": "npm run dev",
             "skipFiles": ["<node_internals>/**"]
         }

@@ -1,0 +1,9 @@
+services:
+  presidio-analyzer:
+    build: ./presidio
+    image: social-copilot/presidio-analyzer:2.2.362-es
+    ports:
+      - "127.0.0.1:5002:3000"
+    environment:
+      LOG_LEVEL: WARNING
+    restart: unless-stopped

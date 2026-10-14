@@ -14,8 +14,9 @@ Use these specific versions and libraries. Do not introduce alternatives without
 
 - **Frontend**: React (Next.js) TailwindCSS
 - **Backend**: Node.js, Express
-- **Database**: SQLite (better-sqlite3, file `web-app/data/social-coworker.db`). Supabase/PostgreSQL may come later; keep data access isolated in `src/lib/db/`.
+- **Database**: SQLite (better-sqlite3, file `app/data/social-coworker.db`). Supabase/PostgreSQL may come later; keep data access isolated in `src/lib/db/`.
 - **AI**: Mastra (`@mastra/core`), model `google/gemini-3.8-flash` (`src/agents/agent.ts`). Output is structured (`src/agents/reportOutputSchema.ts`) and saved as a draft that a person must review and confirm.
+- **Anonymization**: Presidio Analyzer in Docker (`presidio/`, `docker-compose.yml`), called with axios from `src/lib/anonymizer/`. Case data MUST be pseudonymized before reaching any LLM; never fall back to raw data. See `ANONIMIZACION.md`.
 - **Auth**: Deferred (not needed for now; to be implemented last)
 - **Payments**: Stripe SDK
 - **DevOps**: GitHub Actions

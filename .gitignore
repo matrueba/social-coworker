@@ -140,5 +140,8 @@ vite.config.ts.timestamp-*
 
 
 # SQLite local database
-web-app/data/*.db
-web-app/data/*.db-*
+app/data/*.db
+app/data/*.db-*
+
+.agents/*
+.claude*
